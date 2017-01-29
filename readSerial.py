@@ -10,8 +10,6 @@ i = 0
 
 ser = serial.Serial('/dev/cu.usbmodem621',9600)
 
-log = open("log.csv","a+")
-
 while True:
 	received_line=ser.readline().rstrip()
 	timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
@@ -22,12 +20,12 @@ while True:
 	# print myList
 	print data[i]
 
-	with open("log.csv","a+") as myfile:
+	with open("data_log.csv","a+") as myfile:
 		number_of_columns_in_entry = len(data[i])
 		for x in range (0,number_of_columns_in_entry):
     			myfile.write(str(data[i][x]))
     			if x < number_of_columns_in_entry-1:
     					myfile.write(",")
-	with open("log.csv","a+") as myfile:
+	with open("data_log.csv","a+") as myfile:
     		myfile.write("\n")
 	i += 1
